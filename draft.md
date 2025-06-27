@@ -38,3 +38,9 @@ Abstract
 6. testing
 7. evaluation
 ```
+
+
+## artefact description
+
+I want to build a web application that can be used students to take notes, store files and set reminds for revision.
+A web application will is convinient for students as it could be used on almost any device, backing up student work could be handled on the server which would take cognitive load off from students. A few drawbacks that I can think of at the moment are the that an internet connection would be required for students to access their data, privacy and security issues concerning user data.
