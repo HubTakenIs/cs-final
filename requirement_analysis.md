@@ -33,6 +33,13 @@ A web application will is convinient for students as it could be used on almost 
     - [ ] \(Optional) performance metrics
     - [ ] \(Optional) PWA for push notifications
 
+## non functional requirement checklist
+
+- [] responsive UI
+- [] fast load times
+- [] secure data storage
+- [] privacy (users can only access their notes) 
+
 ## constraints
 
 Since the artefact is a prototype, I will be using a simpler database and self hosting the project on my server. This will ultimately affect the number of concurrent users the prototype would be able to handle as a single machine will be limited by network speed, cpu speed and storage speed. Another constraint is time, at the moment of writing this, I have 2 weeks left till the submission date, I simply do not have time to learn new tools, so I will be using tools I have already used. I rent a linux virtual private server (vps) that I can host this project on. I have experience using Python, Flask, HTMX and Sqlite3 to write dynamic web applications. Due to the time constraints to learn new skills, I have labelled a few functionality requirements as optional.
