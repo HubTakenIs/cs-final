@@ -42,5 +42,11 @@ The proposed artefact structure will contain a project file `pyproject.toml` to 
 ## UI navigation diagrams
 ![UI navigation](/system_design/UI_nagivation.png)
 
-## UI mockups
+## UI mockups / ideas
 
+### Landing Page
+![Landing page design ](/system_design/landing_page_design.png)
+### Login / Register Page
+![Login and registration page design](/system_design/login_page_design.png)
+### User Dashboard
+![UI navigation](/system_design/UI_nagivation.png)
