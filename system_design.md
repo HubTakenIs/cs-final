@@ -16,7 +16,13 @@ The diagram above shows system components and and how they interact. Web browser
 # this repository
 |-- pyproject.toml
 |-- LICENSE
-|-- .gitingore
+|-- .gitignore
+|-- /.venv
+|-- /tests / # unit and integration tests
+|-- /instance / # local instance. this won't be commited to git
+    |-- /uploads/ # upload folder
+        |-- /user_id/ # folder for each user, to store their uplaodes
+    |-- db.sqlite3 # the database
 
 # artefact folder
 /note_app/
@@ -28,10 +34,7 @@ The diagram above shows system components and and how they interact. Web browser
     | -- style.css
     | -- app.js
 |-- /templates / # jinja2 UI templates
-|-- /tests / # unit and integration tests
-|-- /instance / # local instance
-    |-- /uploads/ # upload folder
-        |-- /user_id/ # folder for each user, to store their uplaodes
-    |-- db.sqlite3 # the database
 
 ```
+
+The proposed artefact structure will contain a project file `pyproject.toml` to build the project for deployment. `note_app` directory will contain all of the code as one module for the notetaking app. `.venv` directory will not be commited to source control and it will contain a virtual environment as per python dependancy management best practices. `tests` directory will hold test data, unit tests and integrations tests for the whole application. `.gitignore` file will contain recreateable files that do not need to be commited to source control.
