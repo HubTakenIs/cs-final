@@ -21,7 +21,7 @@ The diagram above shows system components and and how they interact. Web browser
 |-- /tests / # unit and integration tests
 |-- /instance / # local instance. this won't be commited to git
     |-- /uploads/ # upload folder
-        |-- /user_id/ # folder for each user, to store their uplaodes
+        |-- /user_id/ # folder for each user, to store their uploads
     |-- db.sqlite3 # the database
 
 # artefact folder
