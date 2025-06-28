@@ -49,4 +49,8 @@ The proposed artefact structure will contain a project file `pyproject.toml` to 
 ### Login / Register Page
 ![Login and registration page design](/system_design/login_page_design.png)
 ### User Dashboard
-![UI navigation](/system_design/UI_nagivation.png)
+![User dashboard page design](/system_design/user_dashboard_design.png)
+### Single Item View
+![Single Item view page design](/system_design/single_item_view_design.png)
+### Item List View
+![Item list view page design](/system_design/item_list_view_design.png)
