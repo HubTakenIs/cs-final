@@ -54,3 +54,6 @@ The proposed artefact structure will contain a project file `pyproject.toml` to 
 ![Single Item view page design](/system_design/single_item_view_design.png)
 ### Item List View
 ![Item list view page design](/system_design/item_list_view_design.png)
+
+## Database Design
+![ERD](/system_design/ERD.png)
