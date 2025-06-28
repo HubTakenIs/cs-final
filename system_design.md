@@ -16,6 +16,7 @@ The diagram above shows system components and and how they interact. Web browser
 # this repository
 |-- pyproject.toml
 |-- LICENSE
+|-- .gitingore
 
 # artefact folder
 /note_app/
