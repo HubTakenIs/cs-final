@@ -81,3 +81,27 @@ The proposed artefact structure will contain a project file `pyproject.toml` to 
 |   `POST`  | `/uploads/<id>/deattach`| de-attach upload from note | note id  | redirect to user's note|
 
 ## Security Considerations
+
+### Authentication
+- Session management: use secure, signed session tokens that are validated by the server. 
+
+### Password and User Credential Safety
+- Store passwords using strong hashing algorithms
+- Use email verification on signup 
+
+### Input Validation and Sanitization
+Sanitize inputs for all endpoints to prevent injection attacks (SQL injection, XSS, etc.).
+Implement server-side validation for all data including:
+- Note titles/content
+- reminder titles/descriptions
+- Uploaded file metadata
+- User inputs (IDs, emails, dates)
+
+### File upload security
+- Only allow specific file types (.pdf, .docx, .txt, .png, .jpeg) by checking file extension.
+- Limit file size (e.g., 10MB max) to save space, reduce load times and prevent a DoS.
+- Store uploaded files outside the public web directory
+
+### Data Privacy
+- use HTTPS for all communication
+- Ensure users can only access their own notes, files, and schedules.
