@@ -57,3 +57,27 @@ The proposed artefact structure will contain a project file `pyproject.toml` to 
 
 ## Database Design
 ![ERD](/system_design/ERD.png)
+
+## App Endpoint Design
+
+|HTTP Method | Endpoint | Description | Request Body | Response |
+| ---------- | -------- | ----------- | ------------ | -------- | 
+|   `GET`  | `/notes`| Fetch all notes for a user | blank | List of Notes| 
+|   `GET`  | `/notes/<id>`| Fetch single note by ID | blank | Note object representation| 
+|   `POST`  | `/notes/`| create new note | Title, content | redirect to new note| 
+|   `PUT`  | `/notes/<id>`| update a note | fields to update | redirect to updated note| 
+|   `DELETE`  | `/notes/<id>`| delete a note | blank | redirect to list of notes| 
+|   `GET`  | `/uploads`| fetch all uploads for a user | blank | list of user's uploads|
+|   `GET`  | `/uploads/<id>`| fetch an upload by ID | blank | single upload details |
+|   `POST`  | `/uploads`| create upload record and save file | file | redirect to upload details.|
+|   `DELETE`  | `/uploads/<id>`| delete upload | blank | redirect to user's uploads| 
+|   `GET`  | `/reminders`| fetch all reminders for a user | blank | list of user's reminders|
+|   `GET`  | `/reminders/<id>`| fetch a reminder by ID | blank | single reminder details |
+|   `POST`  | `/reminders`| create reminder record and save file | title, task, email_sent, review_date | redirect to reminder details.|
+|   `DELETE`  | `/reminders/<id>`| delete reminder | blank | redirect to user's reminders|
+|   `POST`  | `/reminders/<id>/attach`| attach reminder to note | note id | redirect to note|
+|   `POST`  | `/uploads/<id>/attach`| attach upload to note | note id  | redirect to user's note|
+|   `POST`  | `/reminders/<id>/deattach`| de-attach reminder from note | note id | redirect to note|
+|   `POST`  | `/uploads/<id>/deattach`| de-attach upload from note | note id  | redirect to user's note|
+
+## Security Considerations
