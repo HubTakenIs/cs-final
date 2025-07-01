@@ -90,3 +90,20 @@ Git is practically industry standard source management because of the price (it'
 - https://mailinabox.email/guide.html#video
 
 Mail-in-a-box seems to be the simplest SMTP server that I could find for self hosting.  
+
+### Refined list 
+- https://link.springer.com/article/10.1007/s11251-018-9458-0
+- https://www.proquest.com/openview/4b60fb586adfee8341612edc2f66cf0f/1?pq-origsite=gscholar&cbl=18750
+- https://www.e-iji.net/dosyalar/iji_2020_2_1.pdf
+- https://www.tandfonline.com/doi/full/10.1080/09658211.2019.1569694
+- https://journals.sagepub.com/doi/10.1177/2372732215624708
+- https://onlinelibrary.wiley.com/doi/10.1111/modl.12843
+- https://www.sciencedirect.com/science/article/pii/S0196070922001223
+- https://www.pnas.org/doi/full/10.1073/pnas.1815156116
+- https://online-journals.org/index.php/i-jet/article/view/10825
+- https://formative.jmir.org/2025/1/e55087/
+- https://journals.sagepub.com/doi/full/10.1177/27527263221149754
+- https://link.springer.com/article/10.1007/s11251-020-09517-2
+- https://www.ewadirect.com/proceedings/chr/article/view/12153
+- https://www.sciencedirect.com/science/article/pii/S1162908820301171
+
