@@ -1,4 +1,4 @@
-# Literature Review
+# Literature Review document
 
 I will store details of how I searched for papers for my literature review. This will include my seach terms, proccess of choosing papers for the review and all of the links for refferences. All papers were accessed on the 1st of July
 
@@ -107,3 +107,12 @@ Mail-in-a-box seems to be the simplest SMTP server that I could find for self ho
 - https://www.ewadirect.com/proceedings/chr/article/view/12153
 - https://www.sciencedirect.com/science/article/pii/S1162908820301171
 
+## Literature Review
+
+### Note Taking 
+Technological advancements made in recent decades have improved access to information and technology which has also advanced note taking. The digitization of note taking in recent years has sparked research in the effectiveness of digital note taking with one paper suggesting that digital notes taken on a laptop (1) are more effective than long-hand notes for similar-text related learning and image-related learning whereas long-hand notes are more effective for text-related learning however, the paper concludes that the effectiveness of either note-taking method largely depends on the contents as well as whether the notes are reviewed suggesting that spaced repetition should be used. A separate thesis claims that note-taking effectiveness also depends on whether the notes are self-generated or guided notes (2) suggesting that while guided notes alleviate the cognitive load on individuals, they could be less effective than self-generated notes because the individual would not be able to express as much freedom in their note-taking, potentially limiting their ability to create personal and meaningful notes developing relations between notes and learning material. Interestingly, the thesis claims that neither note-taking method outperformed their control condition on a multiple-choice quiz suggesting that there are many variables that need to be evaluated when considering the effectiveness of notes which are the quantity, quality, mode of note taking and review of notes (2). These studies imply that a balance of high quality and quantity of notes is required in either mode of note taking whether digital or long-hand for improved results. 
+
+
+### References
+1. https://link.springer.com/article/10.1007/s11251-018-9458-0
+2. https://www.proquest.com/openview/4b60fb586adfee8341612edc2f66cf0f/1?pq-origsite=gscholar&cbl=18750
