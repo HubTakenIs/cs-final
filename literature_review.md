@@ -55,3 +55,38 @@ I have used the following search queries in Google Scholar to find papers.
 - https://dl.acm.org/doi/abs/10.1145/3695652.3695659
 - https://psycnet.apa.org/record/1991-19794-001?errorCode=invalidAccess
 - https://heinonline.org/HOL/LandingPage?handle=hein.journals/jhtl17
+
+### Tools
+
+I need to do some research for the tools I will be using to build the artefact.
+
+#### Programming language
+- https://docs.python.org/3/library/index.html
+- https://docs.python.org/3/reference/index.html
+- https://docs.python.org/3/library/sched.html
+- https://docs.python.org/3/library/email.examples.html#email-examples
+- https://docs.python.org/3/library/smtplib.html
+
+Python will be used to create the web application because of it's extensive documentation, resources and simplicity. It can also be used to interact with a database and SMTP server.
+#### Frameworks
+- https://flask.palletsprojects.com/en/stable/
+- https://htmx.org/
+
+Flask is a WSGI web application framework, it makes it easy to implement common web patterns. It doesn't have an ORM and has great documentation.
+HTMX is a javascript library that improves standard html5 so it's possible to build modern user interfaces without the use of React.
+
+#### Database
+- https://sqlite.org/whentouse.html
+- https://docs.python.org/3/library/sqlite3.html
+
+Sqlite3 will be the database engine because there are packages in python and flask to interact with it. There is plenty of documentation and examples of how to interact with it. It also supports a search feature that I can use to implement a search bar.
+#### Source Control
+- https://git-scm.com/book/en/v2
+- https://docs.github.com/en
+
+Git is practically industry standard source management because of the price (it's free) and it's ecosystem (GitHub and GitLab). It integrateds with GitHub very well to offer secure code backups. 
+#### SMTP server
+- https://mailinabox.email/
+- https://mailinabox.email/guide.html#video
+
+Mail-in-a-box seems to be the simplest SMTP server that I could find for self hosting.  
