@@ -1,0 +1,25 @@
+[project]
+name = "napp"
+version = "0.0.1"
+dependencies = [
+  "flask",
+]
+authors = [
+  { name="Hubertas Varanauskas", email="hubertaslol@gmail.com" },
+]
+description = "note taking app for university"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/HubTakenIs/cs-final"
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
