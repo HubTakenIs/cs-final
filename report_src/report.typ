@@ -33,6 +33,13 @@ However, a study on the impact of digital distraction on lecture taking notes an
 
 == Conclusion
 
+Firstly, note-taking has advanced significantly in the last decade with digitised note-taking being the dominant variant of taking notes. Most students preferring guided notes over generating their own ones implies that note-taking is becoming less popular although the benefits of note taking are real and when combined with spaced repetition creates an effective learning strategy. Modern students often use tools to rephrase or auto-generate notes which skips note-taking but does not foster understanding thus having worse results. 
+
+Secondly, there is a lack of research in specifically how students can improve their note-taking abilities however, from the reviewed literature I am suggesting that to improve note quality the individual should consider the relevance, detail and whether their notes form complete coherent thoughts. When considering these suggestions one could improve the quality of their notes.
+ 
+Lastly, the aim of my project will be to create a note-taking app which encourages higher quality notes while also using the spaced repetition (of 1-8 days) learning strategy which has been highly research to be a simple and effective strategy to learn material of varying complexity and quantity. Although my research has shown some potential challenges my project could present such as maintaining user motivation, I believe that my design and implementation of the project would solve these issues. 
+
+
 #pagebreak()
 = Requirement Analysis
 #pagebreak()
