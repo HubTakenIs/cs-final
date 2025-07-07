@@ -40,7 +40,13 @@ def create_app(test_config=None):
     from . import main
     app.register_blueprint(main.bp)
 
+    from . import note
+    app.register_blueprint(note.bp)
 
+    from . import reminder
+    app.register_blueprint(reminder.bp)
 
+    from . import upload
+    app.register_blueprint(upload.bp)
 
     return app
