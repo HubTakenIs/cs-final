@@ -14,7 +14,7 @@ def single_note(id):
 
 @bp.route('/list')
 def list_view():
-    return 'note list '
+    return 'note list'
 
 @bp.route('/<int:id>/update')
 def update_note(id):
