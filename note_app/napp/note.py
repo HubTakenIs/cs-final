@@ -91,7 +91,7 @@ def get_note(id, check_author=True):
     ).fetchone()
 
     if note is None:
-        abort(404, f"Post id {id} doesn't exist.")
+        abort(404, f"Note id {id} doesn't exist.")
 
     if check_author and note['author_id'] != g.user['id']:
         abort(403)
