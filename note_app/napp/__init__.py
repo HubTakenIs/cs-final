@@ -9,6 +9,8 @@ def create_app(test_config=None):
     app.config.from_mapping(
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'napp.sqlite'),
+        ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'},
+        UPLOAD_FOLDER = os.path.join(app.instance_path, 'uploads')
     )
 
     if test_config is None:
@@ -23,6 +25,12 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+    # make upload folder.
+    try:
+        os.makedirs(app.config['UPLOAD_FOLDER'])
+    except OSError:
+        pass
+
 
     # a simple page that says hello
     @app.route('/hello') 
@@ -47,6 +55,6 @@ def create_app(test_config=None):
     app.register_blueprint(reminder.bp)
 
     from . import upload
-    app.register_blueprint(upload.bp)
+    app.register_blueprint(upload.bp,config=app.config)
 
     return app

@@ -15,6 +15,7 @@ def create():
         due = request.form['due']
         error = None
 
+        # doesn't seem to work
         if due:
             try:
                 due = datetime.strptime(due, "%Y-%m-%d")
