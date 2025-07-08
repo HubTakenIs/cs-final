@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Reminder{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="title">Title</label>
+    <input name="title" id="title" value="{{ request.form['title'] }}" required>
+    <label for="body">Body</label>
+    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+    
+    <label for="review_date">Review Date</label>
+    <input type="date" name="review_date" id="review_date" value="{{ request.form['review_date'] }}">
+    
+    <input type="submit" value="Save">
+    
+  </form>
+{% endblock %}

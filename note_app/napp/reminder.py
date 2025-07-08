@@ -1,25 +1,60 @@
-from flask import Blueprint
-from . import db
+from flask import Blueprint,flash,render_template,request,redirect,g,url_for
+from napp.db import get_db
+from napp.auth import login_required
 
 bp = Blueprint('reminder', __name__ ,url_prefix='/reminder')
 
 
 @bp.route('/create')
-def create_reminder():
-    return 'single reminder view'
+@bp.route('/create', methods=('GET', 'POST'))
+@login_required
+def create():
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+        due = request.form['review_date']
+        error = None
+
+        if not title:
+            error = 'Title is required.'
+        
+        if not due:
+            error = 'Review date is required.'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'INSERT INTO reminder (title, body, author_id,due)'
+                ' VALUES (?, ?, ?,?)',
+                (title, body, g.user['id'], due)
+            )
+            db.commit()
+            return redirect(url_for('reminder.list'))
+    return render_template('reminder/create.html')
+
 
 @bp.route('/<int:id>/view')
-def single_reminder(id):
+def view(id):
     return f'single reminder {id} view'
 
 @bp.route('/list')
-def list_view():
-    return 'reminder list '
+@login_required
+def list():
+    db = get_db()
+    reminders = db.execute(
+        'SELECT r.id, title, body, created, author_id, username,due'
+        ' FROM reminder r JOIN user u ON r.author_id = u.id'
+        ' ORDER BY created DESC'
+    ).fetchall()
+    return render_template('reminder/list.html',reminders=reminders)
+
 
 @bp.route('/<int:id>/update')
-def update_reminder(id):
+def update(id):
     return f'update {id} reminder'
 
 @bp.route('/<int:id>/delete')
-def delete_reminder(id):
+def delete(id):
     return f'delete {id} reminder'

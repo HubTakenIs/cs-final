@@ -26,7 +26,7 @@ CREATE TABLE reminder (
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   due TIMESTAMP NOT NULL , -- cannot use datetime to set as default
   title TEXT NOT NULL,
-  task TEXT NOT NULL,
+  body TEXT NOT NULL,
   complete INTEGER NOT NULL DEFAULT 0,
   FOREIGN KEY (author_id) REFERENCES user (id),
   FOREIGN KEY (note_id) REFERENCES note (id)
