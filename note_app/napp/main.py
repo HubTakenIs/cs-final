@@ -5,7 +5,7 @@ bp = Blueprint('main', __name__)
 
 @bp.route('/')
 def index():
-    return redirect(url_for('note.list'))
+    return render_template("index.html")
 
 @bp.route('/dashboard')
 def profile():
