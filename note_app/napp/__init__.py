@@ -55,6 +55,8 @@ def create_app(test_config=None):
     app.register_blueprint(reminder.bp)
 
     from . import upload
-    app.register_blueprint(upload.bp,config=app.config)
+    app.register_blueprint(upload.bp)
+
+    app.add_url_rule("/uploads/<name>", endpoint="download_file", build_only=True)
 
     return app

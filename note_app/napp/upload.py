@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, request, redirect, url_for, g, abort, current_app
+from flask import Blueprint, render_template, flash, request, redirect, url_for, g, abort, current_app,send_from_directory
 from werkzeug.utils import secure_filename
 from napp.db import get_db
 from napp.auth import login_required
@@ -44,14 +44,20 @@ def single(id):
 @bp.route('/list')
 @login_required
 def list():
-    return 'upload list'
+    items = os.listdir(os.path.join(current_app.config['UPLOAD_FOLDER'],str(g.user["id"])))
+    return render_template('upload/list.html',items=items,user_id=str(g.user["id"]))
 
-@bp.route('/<int:id>/update')
+@bp.route("/<int:id>/<name>")
 @login_required
-def update(id):
-    return f'update {id} note'
+def download_file(name,id):
+    user_folder = os.path.join(current_app.config['UPLOAD_FOLDER'],str(g.user["id"]))
+    return send_from_directory(user_folder, name)
 
-@bp.route('/<int:id>/delete')
+@bp.route('/<int:id>/<name>/delete')
 @login_required
-def delete(id):
-    return f'delete {id} upload'
+def delete_file(name,id):
+    user_folder = os.path.join(current_app.config['UPLOAD_FOLDER'],str(g.user["id"]))
+    file_name = os.path.join(user_folder,name)
+    if os.path.isfile(file_name):
+        os.remove(file_name)
+    return redirect(url_for("upload.list"))
