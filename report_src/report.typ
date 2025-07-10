@@ -210,8 +210,14 @@ Implement server-side validation for all data including:
 
 #pagebreak()
 = Implementation
+
 #pagebreak()
 = Testing
+
+#pagebreak()
+= Experiment and  Results
+The experiment was going to involve students testing the application in their studies for a period of time. However, I failed to finish implementing the core features of the application so the experiment cannot take place nor are there any results to discuss.
+
 #pagebreak()
 = Evaluation
 #pagebreak()
