@@ -5,6 +5,8 @@
 
 = Introduction
 == Project Motivation
+== Academic Questions
+`Can a note taking app that implements spaced repetition help students study?`
 == Research Topic Introduction
 == Aims and Objectives
 == Scope and Limitations
@@ -325,7 +327,7 @@ Out of the 17 entries in th app endpoint table, I have implemented 13. I had ren
 )
 
 == Hosting
-I failed to host the web application properly on time. I have installed apache2 and configured it as a reverse proxy with tls, it would point to a local waitress process that runs my flask application. However, I did not set up a persistent waitress process, so my server returns a `503 Service Unavailable` response. 
+I failed to host the web application properly on time. I have installed apache2 and configured it as a reverse proxy with tls, it would point to a local waitress process that runs my flask application. However, I did not set up a persistent waitress process, so my server returns a `503 Service Unavailable` response. The web app is accessible only when I run the process as a user on the remote system over ssh.
 
 #pagebreak()
 = Testing
@@ -336,5 +338,6 @@ The experiment was going to involve students testing the application in their st
 
 #pagebreak()
 = Evaluation
+I am delusional and incompenent to have thought I could do this project in less than 3 weeks. I deserve to fail. I am going to sleep.
 #pagebreak()
 #bibliography("works.bib",style: "harvard-cite-them-right")
