@@ -42,8 +42,131 @@ Lastly, the aim of my project will be to create a note-taking app which encourag
 
 #pagebreak()
 = Requirement Analysis
+
+I want to build a web application that can be used students to take notes, store files and set reminds for revision.
+A web application will is convinient for students as it could be used on almost any device, backing up student work could be handled on the server which would take cognitive load off from students. A few drawbacks that I can think of at the moment are the that an internet connection would be required for students to access their data, privacy and security issues concerning user data.
+
+== functionality requirement checklist
+I have wrote a checklist for the functional requirements. I will use the checklist during the testing phase of the project to test my artefact and evaluate if I have met my requirements.  
+
+- Note functionality
+    - Create note
+    - Load note
+    - Update (save) note
+    - Delete note
+    - Search notes
+- File upload functionality
+    - Upload file
+    - Delete file
+    - Update file
+    - Search files
+- User account functionality
+    - Create account
+    - (Optional) Delete account
+    - Login
+    - Log out
+- Reminder functionality
+    - set reminder manually
+    - view upcoming reminders
+    - view past reminders
+    - search reminders
+    - send email as a reminder to users.
+- Over-lapping functionality
+    - attach file to note
+    - have an option with sane defaults to create a note with a reminder
+    - attach file to a reminder.  
+    - (Optional) performance metrics
+    - (Optional) PWA for push notifications
+
+== non functional requirement checklist
+
+- responsive UI
+- fast load times
+- secure data storage
+- privacy (users can only access their notes) 
+
+== constraints
+
+Since the artefact is a prototype, I will be using a simpler database and self hosting the project on my server. This will ultimately affect the number of concurrent users the prototype would be able to handle as a single machine will be limited by network speed, cpu speed and storage speed. Another constraint is time, at the moment of writing this, I have 2 weeks left till the submission date, I simply do not have time to learn new tools, so I will be using tools I have already used. I rent a linux virtual private server (vps) that I can host this project on. I have experience using Python, Flask, HTMX and Sqlite3 to write dynamic web applications. Due to the time constraints to learn new skills, I have labelled a few functionality requirements as optional.
+
+== feasibility
+
+A web app with CRUD functionality is nothing new and not complicated. I should be able to do the whole app in a few days to implement the core functionality. I will have to learn how to set up my own email server to send reminders to users and how to integrate it with my python application.
 #pagebreak()
 = System Design
+
+== Artefact Architecture
+#figure(
+  image("../system_design/artefact architecture.png"),
+  caption: [
+   Proposed architecture
+  ],
+)
+
+
+
+== UI Mockups
+
+== Database Design
+#figure(
+  image("../system_design/ERD.png", width: 80%),
+  caption: [
+   Entity Relation Diagram (ERD)
+  ],
+)
+
+== App Endpoint Design
+#figure(
+  table(
+    columns: 5,
+    [HTTP Method], [Endpoint], [Description], [Request Body],[Response],
+    [`GET` ], [`/notes`], [Fetch all notes for a user ], [blank], [List of Notes] ,
+    [ `GET`],[`/notes/<id>`],[Fetch single note by ID],[blank],[Note object representation],
+    [`POST`], [`/notes/`], [ create new note], [Title, content], [redirect to new note],
+    [`PUT`], [`/notes/<id>`], [update a note], [fields to update], [redirect to updated note],
+    [`DELETE`], [`/notes/<id>`], [delete a note], [blank], [redirect to list of notes],
+    [`GET`], [`/uploads`], [fetch all uploads for a user], [ blank], [list of user's uploads],
+    [`GET`], [`/uploads/<id>`], [fetch an upload by ID], [blank], [single upload details],
+    [ `POST`], [`/uploads`], [create upload record and save file], [file], [redirect to upload details.],
+    [`DELETE`], [`/uploads/<id>`], [delete upload], [blank], [redirect to user's uploads],
+    [`GET`], [`/reminders`], [fetch all reminders for a user], [blank], [list of user's reminders],
+    [`GET`], [`/reminders/<id>`], [fetch a reminder by ID], [blank], [single reminder details],
+    [`POST`], [`/reminders`], [create reminder record and save file], [title, task, email_sent, review_date], [redirect to reminder details.],
+    [ `DELETE`], [`/reminders/<id>`], [delete reminder], [blank], [redirect to user's reminders],
+    [`POST`], [`/reminders/<id>/attach`], [attach reminder to note], [note id], [redirect to note],
+    [`POST`], [`/uploads/<id>/attach`], [attach upload to note], [note id], [redirect to user's note],
+    [ `POST`], [`/reminders/<id>/deattach`], [de-attach reminder from note], [note id], [redirect to note],
+    [`POST`], [`/uploads/<id>/deattach`], [de-attach upload from note], [note id], [redirect to user's note],
+  ),
+  caption: [App endpoint design],
+)
+
+== Security Considerations
+
+=== Authentication
+- Session management: use secure, signed session tokens that are validated by the server. 
+
+=== Password and User Credential Safety
+- Store passwords using strong hashing algorithms
+- Use email verification on signup 
+
+=== Input Validation and Sanitization
+Sanitize inputs for all endpoints to prevent injection attacks (SQL injection, XSS, etc.).
+Implement server-side validation for all data including:
+- Note titles/content
+- reminder titles/descriptions
+- Uploaded file metadata
+- User inputs (IDs, emails, dates)
+
+=== File upload security
+- Only allow specific file types (.pdf, .docx, .txt, .png, .jpeg) by checking file extension.
+- Limit file size (e.g., 10MB max) to save space, reduce load times and prevent a DoS.
+- Store uploaded files outside the public web directory
+
+=== Data Privacy
+- use HTTPS for all communication
+- Ensure users can only access their own notes, files, and schedules.
+
 #pagebreak()
 = Implementation
 #pagebreak()
