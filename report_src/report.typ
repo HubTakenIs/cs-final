@@ -5,11 +5,49 @@
 
 = Introduction
 == Project Motivation
+Students in current educational environments are increasingly relying on digital resources, such as lecture recordings, online slides, and automatic note generators, which reduce the perceived necessity for traditional note-taking. Research indicates that passive involvement with study material, including rereading or duplicating knowledge, leads to lower long-term retention and understanding, even when these methods are convenient. It has been demonstrated that active learning strategies like spaced repetition and self-generated note-taking greatly enhance comprehension and memory consolidation. Nevertheless, a lot of current digital platforms put information delivery ahead of cognitive engagement, which results in a lack of use of these tried-and-true tactics.
+
+The goal of this project is to close this gap by creating a tool that motivates students to take excellent, original notes and go over them at the best times. The method seeks to encourage active recall and sustained learning without overburdening the user by fusing note-taking with customised spaced repetition reminders. The research also recognises the motivating obstacles that students frequently encounter while trying to maintain regular study habits. The application offers a more comprehensive approach to digital learning support by addressing this issue with helpful features like motivational prompts and goal-oriented reminders. The ultimate objective is to develop a user-friendly, research-based application that enables students to learn more efficiently and on their own.
 == Academic Questions
 `Can a note taking app that implements spaced repetition help students study?`
 == Research Topic Introduction
+Two extensively researched cognitive methods that are important for academic learning and long-term memory retention are taking notes and spaced repetition. Actively documenting knowledge through note-taking can improve understanding and facilitate review at a later time. Based on psychology studies on memory consolidation, spaced repetition is the process of going over content at progressively longer intervals. In recent years, students' use of these tactics has changed due to digital learning settings and technologies, which has sparked a fresh interest among academics in their efficacy and technological optimization.
+
+The usefulness of various note-taking techniques, such as digital versus handwritten and guided versus self-generated notes, and their effects on student learning are further investigated in the literature review. Additionally, it looks at the cognitive science underlying spaced repetition, emphasizing the advantages of active recall and the best review intervals. The review concludes by examining the function of digital note-taking and revision tools and assessing how they affect engagement, academic achievement, and self-control. These subjects offer a starting point for comprehending the educational ideas underlying the suggested note-taking program, which uses user-driven note creation and individualized review reminders to promote active learning and memory retention.
 == Aims and Objectives
+=== Aims
+the aim is to design and create a web-based note-taking tool that uses spaced repetition reminders to enhance learning outcomes and promotes the creation of high-quality, self-generated notes.
+
+- design web-based note-taking tool
+- implement and host web-based note-taking tool
+- test and evaluate web-based note-taking tool
+
+=== Objectives
+- Investigate and review current scholarly literature on note-taking techniques, spaced repetition, and the efficiency of digital teaching tools.
+- Design a user-friendly web interface for creating, editing, and organizing personal notes, with support for file upload
+- Implement a secure user authentication system to allow users to register, log in, and manage their own notes and review schedules.
+- Develop a reminder system that notifies users when it is time to review specific notes, via email or in-app prompts.
+- Ensure data persistence using a lightweight database (SQLite) and manage note, user, and review data securely.
+- Evaluate the application through testing of core features, usability, and alignment with learning theories discussed in the literature review.
 == Scope and Limitations
+=== Scope
+The goal of this project is to design a web-based note-taking application that motivates students to actively compose and go over their own study notes.
+Creating and modifying notes, uploading files (such as PDF, DOCX, and TXT), registering and logging users, and implementing
+a spaced repetition system that sends reminders depending on review schedules are among the essential features. To assist self-directed 
+learners, the application features an easy-to-use interface. Python with Flask, SQLite for data storage, 
+and other tools like Waitress for deployment and APScheduler or a similar program for managing review reminders are used in the backend's construction.
+
+Individual users are supposed to utilise the system to manage their own study materials. It is intended for secondary or college students who favour
+adaptable and intellectually stimulating study aids. By encouraging active learning habits and offering incentive elements, the app promotes self-regulation.
+
+=== Limitations
+Because it is a prototype, the project's scope and complexity are constrained. Real-time device syncing and collaborative note-taking are not supported. 
+The spaced repetition approach does not modify review intervals according to actual recall performance or difficulty level because 
+it is based on fixed logic rather than adaptive learning algorithm.
+
+Furthermore, not all deployment setups may ensure email reminders, which rely on external configurations. 
+Advanced security features like two-factor authentication and encrypted note content are not included in the system. Finally, usability 
+insights are based on limited peer and personal input because the program will not been reviewed through extensive user testing due to time and resource restrictions.
 #pagebreak()
 = Literature Review
 
@@ -89,11 +127,18 @@ I have wrote a checklist for the functional requirements. I will use the checkli
 
 == constraints
 
-Since the artefact is a prototype, I will be using a simpler database and self hosting the project on my server. This will ultimately affect the number of concurrent users the prototype would be able to handle as a single machine will be limited by network speed, cpu speed and storage speed. Another constraint is time, at the moment of writing this, I have 2 weeks left till the submission date, I simply do not have time to learn new tools, so I will be using tools I have already used. I rent a linux virtual private server (vps) that I can host this project on. I have experience using Python, Flask, HTMX and Sqlite3 to write dynamic web applications. Due to the time constraints to learn new skills, I have labelled a few functionality requirements as optional.
+Since the artefact is a prototype, I will be using a simpler database and self hosting the project on my server. 
+This will ultimately affect the number of concurrent users the prototype would be able to handle as a single machine will 
+be limited by network speed, cpu speed and storage speed. Another constraint is time, at the moment of writing this, 
+I have 2 weeks left till the submission date, I simply do not have time to learn new tools, so I will be using tools 
+I have already used. I rent a linux virtual private server (vps) that I can host this project on. 
+I have experience using Python, Flask, HTMX and Sqlite3 to write dynamic web applications. 
+Due to the time constraints to learn new skills, I have labelled a few functionality requirements as optional.
 
 == feasibility
 
-A web app with CRUD functionality is nothing new and not complicated. I should be able to do the whole app in a few days to implement the core functionality. I will have to learn how to set up my own email server to send reminders to users and how to integrate it with my python application.
+A web app with CRUD functionality is nothing new and not complicated. I should be able to do the whole app in a few 
+days to implement the core functionality. I will have to learn how to set up my own email server to send reminders to users and how to integrate it with my python application.
 #pagebreak()
 = System Design
 
@@ -213,7 +258,9 @@ Implement server-side validation for all data including:
 #pagebreak()
 = Implementation
 == Implemented views
-I have implemented 3 out of 5 designed pages. I have implemented a simplified version of the item list view page, login/register pages and the landing page. Below I have included some images of the actual product. list view and edit pages slightly differ for notes, reminders and uploads because of slightly different information used to create the records.
+I have implemented 3 out of 5 designed pages. I have implemented a simplified version of the item list view page, 
+login/register pages and the landing page. Below I have included some images of the actual product. list view and edit pages 
+slightly differ for notes, reminders and uploads because of slightly different information used to create the records.
 === landing page
 #figure(
   image("../product_screenshots/actual_landing_page.png",),
@@ -252,7 +299,11 @@ I have implemented 3 out of 5 designed pages. I have implemented a simplified ve
 )
 
 == Implemented database
-The implemented database schema found at `/note_app/napp/schema.sql` is mostly faithful to the design, the only two exceptions being `file` table was renamed to `upload` with 3 foreign keys added and `users` table was missing a password field in the design, so I had to add one later. In the end, I did not use the upload table to store location of files because that won't be changing any time soon. I wrote a script that should create a user upload folder if one doesn't exist when files get uploaded. Here is the implemented schema below:
+The implemented database schema found at `/note_app/napp/schema.sql` is mostly faithful to the design, 
+the only two exceptions being `file` table was renamed to `upload` with 3 foreign keys added and `users` 
+table was missing a password field in the design, so I had to add one later. In the end, I did not use the upload table 
+to store location of files because that won't be changing any time soon. I wrote a script that should create a user upload 
+folder if one doesn't exist when files get uploaded. Here is the implemented schema below:
 ```sql
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS note;
@@ -302,7 +353,9 @@ CREATE TABLE upload (
 );
 ```
 == App endpoints
-Out of the 17 entries in th app endpoint table, I have implemented 13. I had renamed several endpoints and limited myself to the use of `get` and `post` methods for the sake of clarity in my code. For example, create, update and delete endpoints now end with the their corresponding actions like so `/notes/<id>/update`.
+Out of the 17 entries in th app endpoint table, I have implemented 13. I had renamed several 
+endpoints and limited myself to the use of `get` and `post` methods for the sake of clarity in my code. 
+For example, create, update and delete endpoints now end with the their corresponding actions like so `/notes/<id>/update`.
 
 #figure(
   table(
@@ -327,17 +380,388 @@ Out of the 17 entries in th app endpoint table, I have implemented 13. I had ren
 )
 
 == Hosting
-I failed to host the web application properly on time. I have installed apache2 and configured it as a reverse proxy with tls, it would point to a local waitress process that runs my flask application. However, I did not set up a persistent waitress process, so my server returns a `503 Service Unavailable` response. The web app is accessible only when I run the process as a user on the remote system over ssh.
+I failed to host the web application properly on time. I have installed apache2 and configured it as a reverse 
+proxy with tls, it would point to a local waitress process that runs my flask application. However, 
+I did not set up a persistent waitress process, so my server returns a `503 Service Unavailable` response. 
+The web app is accessible only when I run the process as a user on the remote system over ssh.
 
 #pagebreak()
 = Testing
+There are three main ways programs can be tested, manual testing, Unit testing and Behavior Driven testing (it is a part of Behavior Driven Development, BDD).
+Manual testing is a fast way to test program functionality for small scale projects but as projects become larger and have more functionality it becomes significantly harder 
+and slower to test the programs, it also relies heavily on the developer to fully understand their program and be able to account for edge cases. This form 
+of testing is often used for prototyping or small projects. Unit testing is a powerful way to test and assess whether code matches specific criteria when executed, 
+the key benefit of unit testing is that the test code can often be re-used and used to alter the tested code to perform specific actions. It is a form of 
+semi-automatic testing that tests code functionality separated from the rest of the program which can unveil undesirable behaviors allowing for them to be fixed early. 
+Lastly BDD is another form of semi-automatic testing that often uses gherkin specifications which are instructions written in plain language using keywords such as “when”, 
+“given” and “then” to describe what a program should do, it is a very powerful way to test programs while also being simple enough to allow non-technical 
+people to understand the functionality of the program. BDD is often used in large group software development where members of the group have varying degrees of 
+technical knowledge allowing everyone to understand what code does or should do. One issue with BDD is the time it takes to set up, not only does it require gherkin 
+specifications but it also requires code to be written to use the gherkin specifications to test code and the quality of gherkin specifications can determine how easily this is done.
+
+=== Testing napp
+For my project I have chosen to perform manual testing. There are several key reasons for this, 
+one major reason being that I did not plan carefully enough to allow myself to implement all of  the features I wanted to implement, 
+and I have spent a lot of time trying to implement certain features like file uploading or the automatic email system which meant I had less time to 
+write Unit tests or Behavior-Driven tests. Another reason why I have chosen to perform manual testing is because my project is 
+relatively small scale, this means I can quickly test features and edge cases and check whether my web application performs as I expect it to.
+
+For my test cases where I must input user data I will use test data such as:
+-	NappTestEmail\@gmail.com
+-	NappTestUser
+-	Password as : “”
+-	Password as : secret
+-	Test Note Title: Test Note
+-	Test Note Body: My Notes
+-	Edit Note: Edited Test Note
+-	Edit Body: Edited Test Body
+-	Reminder Title: Test Reminder
+-	Reminder Body: My Test Reminder
+-	Reminder Date: 10/07/2025
+-	Edited Reminder Title: Edited Test Reminder
+-	Edited Reminder Body: My Edited Test Reminder
+-	Edited Reminder Date: 16/07/2025
+
+
+=== Testing case 1
+Case 1 tests whether an empty string is accepted as a password,
+I believe an empty password should not be accepted as a valid password, therefore it should fail creation of the account with an empty password.
+Upon clicking the highlighted register button the user should be taken to the registration page where they requested to input an email, username and a password.
+#figure(
+  image("../testing_images/case1_1.png",),
+  caption: [
+   case 1 , image 1
+  ],
+)
+Here I will input “NappTestEmail\@gmail.com” and “NappTestUser” and “” as the password.
+
+#figure(
+  image("../testing_images/case1_2.png",),
+  caption: [
+   case 1 , image 2
+  ],
+)
+When pressing the “Register” button registration should fail.
+#figure(
+  image("../testing_images/case1_3.png",),
+  caption: [
+   case 1 , image 3
+  ],
+)
+The test passes, failing registration of a user with an empty password.
+
+=== Testing case 2
+Successfully registering the user with password “secret”
+I have not implemented a length check for the password,
+only a presence check. This means I will not be testing whether it accepts a single character as a password
+because I know it will as I have not implemented a length check. With that being kept in mind, Case 2 tests successful registration.
+I will be inputting the test data with the password “secret”. 
+#figure(
+  image("../testing_images/case2_1.png",),
+  caption: [
+   case 2 , image 1
+  ],
+)
+Registration should be successful and the user should be prompted to log-in.
+
+#figure(
+  image("../testing_images/case2_2.png",),
+  caption: [
+   case 2 , image 2
+  ],
+)
+I can now view the user NappTestUser in the database meaning that their registration was successful. The test passes as expected.
+
+=== Testing case 3
+Logging-in to a created account
+From test case 2, I will be inputting the account details in the log-in screen where I will then be 
+taken to the landing page logged-in as NappTestUser, showing additional buttons in the nav bar such as  notes, reminders and upload buttons.
+Log-in page
+#figure(
+  image("../testing_images/case3_1.png",),
+  caption: [
+   case 3 , image 1
+  ],
+)
+Inputting test user data.
+
+#figure(
+  image("../testing_images/case3_2.png",),
+  caption: [
+   case 3 , image 2
+  ],
+)
+#figure(
+  image("../testing_images/case3_3.png",),
+  caption: [
+   case 3 , image 3
+  ],
+)
+Test has successfully passed and I am now logged-in as NappTestUser.
+
+=== Testing case 4
+Successfully logging out of the test user account.
+The user should be able to log-out of their account by pressing the highlighted “Log Out” button at the top right of the screen in the navbar.
+#figure(
+  image("../testing_images/case4_1.png",),
+  caption: [
+   case 4 , image 1
+  ],
+)
+
+By Pressing the “Log Out” button the user should be logged out and returned to the landing page.
+
+#figure(
+  image("../testing_images/case4_2.png",),
+  caption: [
+   case 4 , image 2
+  ],
+)
+Test Case 4 passes the test and successfully logs-out the user from the application, working as expected.
+
+=== Testing case 5
+Taking Notes in the note page
+Assuming the user is logged-in they can access their notes pressing the highlighted “Notes” button in the nav bar the user should be taken to the notes page.
+#figure(
+  image("../testing_images/case5_1.png",),
+  caption: [
+   case 5 , image 1
+  ],
+)
+In the notes page, the user can press “New” to add a new note the page will then populate with two text boxes, one for the title and one for the body of the note contents
+
+#figure(
+  image("../testing_images/case5_2.png",),
+  caption: [
+   case 5 , image 2
+  ],
+)
+The user can then input their notes, I will be using my test data.
+#figure(
+  image("../testing_images/case5_3.png",),
+  caption: [
+   case 5 , image 3
+  ],
+)
+And pressing the “Save” button at the bottom left corner will create the note and store it.
+#figure(
+  image("../testing_images/case5_4.png",),
+  caption: [
+   case 5 , image 4
+  ],
+)
+
+This test case passes as it behaves as expected.
+
+=== Testing case 6
+Editing Notes
+I have implemented an edit feature for the taken notes. The user can press the edit button to edit an existing note
+#figure(
+  image("../testing_images/case6_1.png",),
+  caption: [
+   case 6, image 1
+  ],
+)
+Pressing the “Edit” button on the right side of the note, 
+a similar window to the create “New” note is show with the existing data, this can then be overridden and saved. I will be using my Test Data.
+
+#figure(
+  image("../testing_images/case6_2.png",),
+  caption: [
+   case 6 , image 2
+  ],
+)
+Pressing the “Save” button saves the changes made
+#figure(
+  image("../testing_images/case6_3.png",),
+  caption: [
+   case 6 , image 3
+  ],
+)
+Test Cast 6 also passed the testing as it is working as intended.
+
+=== Testing case 7
+Deleting Notes
+To Delete the Notes the user must press “Edit” and then proceed to press the “Delete” button.
+
+#figure(
+  image("../testing_images/case7_1.png",),
+  caption: [
+   case 7, image 1
+  ],
+)
+Pressing the “Delete” button should prompt the user whether they want to really remove the note taken.
+
+#figure(
+  image("../testing_images/case7_2.png",),
+  caption: [
+   case 7 , image 2
+  ],
+)
+By pressing “OK” the user then agrees to permanently delete the selected note which should now show an empty list of notes.
+#figure(
+  image("../testing_images/case7_3.png",),
+  caption: [
+   case 7 , image 3
+  ],
+)
+The test passed as expected.
+
+=== Testing case 8
+Setting a reminder
+Currently I have not implemented the reminder functionally, however, a user can set the Title, contents of the reminder and date for when the reminder should be sent.
+For this I will be going to the reminder page logged in as the test user.
+#figure(
+  image("../testing_images/case8_1.png",),
+  caption: [
+   case 8, image 1
+  ],
+)
+Pressing the “New” button to create a new reminder which similarly to creation and editing of 
+notes should expand the body of the page with textboxes for the user to input the Title, Body contents and date for the reminder
+
+#figure(
+  image("../testing_images/case8_2.png",),
+  caption: [
+   case 8 , image 2
+  ],
+)
+Saving the reminder should store it and display it in the reminders page.
+#figure(
+  image("../testing_images/case8_3.png",),
+  caption: [
+   case 8 , image 3
+  ],
+)
+This test case passes as the user can create a reminder, and it is stored and displayed as expected.
+
+=== Testing case 9
+
+Editing the reminder
+Although the notification functionality of the reminder is not something I managed to implement, I have implemented editing of the reminders which works like the editing of the notes therefore I expect it to pass as well,
+By opening the reminders page, we can see our previously set reminder, I can edit it by pressing the “Edit” button which should allow me to change the contents or delete the reminder.
+
+#figure(
+  image("../testing_images/case9_1.png",),
+  caption: [
+   case 9, image 1
+  ],
+)
+
+#figure(
+  image("../testing_images/case9_2.png",),
+  caption: [
+   case 9 , image 2
+  ],
+)
+By pressing “Save” the reminder should update and the changes should display in the reminders page.
+#figure(
+  image("../testing_images/case9_3.png",),
+  caption: [
+   case 9 , image 3
+  ],
+)
+Test Case 9 successfully passes and the changes made are stored and displayed correctly as expected.
 
 #pagebreak()
 = Experiment and  Results
-The experiment was going to involve students testing the application in their studies for a period of time. However, I failed to finish implementing the core features of the application so the experiment cannot take place nor are there any results to discuss.
+The experiment was going to involve students testing the application in their studies for a period of time. However, I failed to finish implementing the 
+core features of the application so the experiment cannot take place nor are there any results to discuss.
 
 #pagebreak()
 = Evaluation
-I am delusional and incompenent to have thought I could do this project in less than 3 weeks. I deserve to fail. I am going to sleep.
+To critically evaluate my attempt at developing a solution for the proposed research question I must consider every aspect of the project,
+from the conception to the research made as well as the design and implementation of the program and the testing involved.
+
+== Conception and Literature Review:
+
+Based on some research I decided to create a note-taking application which aims to notify users periodically to review their notes to encourage spaced repetition,
+ I believe this idea is something that is not currently available and could therefore fill in a need for a product like that.
+Once I had decided to do a note-taking application I started the literature review where I researched and reviewed existing articles, reports, and studies about 
+note-taking as well as existing applications that perform similar functions.
+I believe I performed my research quite well and formed a strong basis off of which I could plan and design my application to try to create a solution for my proposed problem.
+However, one area of improvement would have been to try and find more statistics based on learning and note-taking as well as learning tool usage to better 
+support my proposed project.
+
+== Planning and design:
+
+In the planning and design stage of my project I detailed the necessary requirements of my project as well as discussed possible constraints and the feasibility 
+of the project as a whole.
+I believe the requirements I have written were enough for me to design the program however,
+I severely underestimated how long it would take to implement everything when discussing the feasibility of the project,
+although I still believe that majority of the features are not incredibly difficult to implement therefore I was not pushing past my limits 
+but the time taken to learn new skills like the implementation of the file uploading or sending email notifications to users was something I underestimated 
+which caused me to not be able to implement them in time. In hindsight I should have prepared better and allocated more time to feature implementation that I was unfamiliar with.
+
+
+== Implementation:
+
+Before starting development I planned to use python and flask to create the web application which overall did work, 
+however, python being considered a relatively “easy” language and flasks large and up-to date documentation led me to believe that it will be easy to implement everything 
+I needed to implement from the requirements in a short span of time, unfortunately that was not the case and I found myself unable to implement everything so quickly. 
+Had I chosen a different language with a different framework so that I perceived them to be difficult I may have been more motivated to work on the project earlier and could
+have allocated more time to the implementation.
+I have successfully implemented most of the features and have a basic web application working, with working account creation and storage,
+log-in and log-out functionality as well as the creation, editing and deletion of notes and reminders. However, currently the reminders act the same way as the notes
+as I was not able to implement the email notification feature in time. I believe that while I managed to add CRUD functionality I should have focused more on the core feature 
+of sending email notifications as that is the main feature that aims to address the research problem of whether learning can be improved through a note-taking application using
+spaced repetition which now is harder to answer as the notification sending feature is also the feature that would have separated my application from a basic notes app
+that exists on most consumer devices and operating systems locally by default. 
+
+
+== Testing:
+
+The testing performed was manual testing which I chose for several reasons like saving time and simplicity 
+due to the small amount of functional features implemented. Upon review of my project I believe I should have tried harder and still at the very
+least attempted to implement unit testing as it could have potentially saved me time while developing my program by applying test driven development techniques,
+it could have saved me time rewriting code by finding unintended behaviours sooner. While I believe my current project is bug free,
+the lack of more in depth testing such as BDD or unit testing means that I cannot with certainty claim that it is perfectly functional as there may
+be bugs or security flaws that could be found through more in-depth testing. The tests performed did pass but is not entirely a good thing, 
+not finding issues with my program means that there is likely something I am not aware of and some edge cases exist that could either crash the program or cause security issues.
+
+== Challenges faced with the project as a whole:
+
+The biggest challenges were motivation, time management, and lack of preparation to undertake a full project. 
+Motivation in particular has been one of the main reasons as to why this project did not go as planned and left many areas of it to be improved. 
+I believe the cause of this is my depression of which I have been diagnosed by my gp and have been taking medications to attempt to improve my motivation. 
+I believe the medication is working as I have given this project a significantly better attempt than my previous years project even if there are many issues 
+with the project and several key features not implemented. My motivation is something I am trying to improve and my depression is something I am also trying to alleviate 
+by exercising and taking prescribed antidepressants. 
+
+Another major challenge for me was time management, 
+the project as a whole feels extremely large even if it is not, everything needs careful and detailed planning and consideration which can 
+be quite difficult to achieve when trying to complete the work quickly. Managing the writing of the report while trying to learn how to use flask and 
+python proved to be challenging for me and hosting and deploying my project myself also took a long time which I did not account for. 
+If I was to do another project like this I could create a basic plan of what needs to be completed and then break down each feature or task into smaller ones 
+until I have a list of things to complete that are small enough for me to maintain my motivation and not be overwhelmed.
+
+== Overview of the project as a whole and it's success:
+ 
+My overall poor time management skills and lack of knowledge and preparation led me to grossly underestimate how long or 
+how difficult certain features would take to implement in my project, which in turn led me to rush the development, 
+only giving me time to implement basic CRUD operations and deploying the web application on my linux server. 
+While some arguments could be made that the application could still be used to improve learning by applying spaced repetition, 
+the main feature that encourages is not implemented therefore I could not have had people use my application and test the spaced repetition which 
+means I cannot draw an appropriate conclusion based off of my project to answer the academic question, It instead will be based off the literature and my project combined. 
+
+There are countless things I could have done differently with the most important one being starting the project earlier 
+but I found this very difficult due to my mental health issues, I received an extenuating circumstances extension and 
+I still found it extremely difficult to start and complete the project. I believe what should have done is apply a principle
+of divide and conquer with the project and report, breaking down everything I had to do, how I would do it and when 
+I would do it in a better manner than I have now with my current planning and design. The program does have the core CRUD 
+features with the most important ones being creation, editing and deletion of notes which would make my web application actually usable for 
+its intended purposes which is note-taking however, it is missing many security features and functionalities that I did initially 
+plan to implement but was unable to do so in a two week timeframe. On top of other functionality that I have not implemented, 
+I also did not have enough time to add the privacy policy and terms of service to my web-application; however, I have drafted these. 
+The consequences of not adding either to the web-application are that users can technically use the application in any way they want 
+if they even choose to use it because there is nothing to reassure them that they're data is secured (like by including a privacy policy page).
+
+Overall, my attempt at the project was unsuccessful as I have not finished my project and I am unable to answer my academic question and provide evidence 
+of my project solving or improving learning. On the other hand, there are many articles and studies that are in support of my 
+project meaning that in theory, if I had actually successfully implemented everything and then surveyed people using my web-application, 
+it would have been likely that my project would have been beneficial to learning to some degree, unfortunately, I cannot claim 
+that as I do not have the evidence based off of my project to support this claim.
+
+
 #pagebreak()
 #bibliography("works.bib",style: "harvard-cite-them-right")
