@@ -210,6 +210,122 @@ Implement server-side validation for all data including:
 
 #pagebreak()
 = Implementation
+== Implemented views
+I have implemented 3 out of 5 designed pages. I have implemented a simplified version of the item list view page, login/register pages and the landing page. Below I have included some images of the actual product. list view and edit pages slightly differ for notes, reminders and uploads because of slightly different information used to create the records.
+=== landing page
+#figure(
+  image("../product_screenshots/actual_landing_page.png",),
+  caption: [
+   Implemented landing page
+  ],
+)
+
+=== registration
+#figure(
+  image("../product_screenshots/actual_registration.png",),
+  caption: [
+   Implemented registration page
+  ],
+)
+=== login
+#figure(
+  image("../product_screenshots/actual_login.png",),
+  caption: [
+   Implemented login page
+  ],
+)
+=== list view
+#figure(
+  image("../product_screenshots/actual_list_view.png",),
+  caption: [
+   Implemented list view page
+  ],
+)
+=== edit
+#figure(
+  image("../product_screenshots/actual_edit.png",),
+  caption: [
+   Implemented edit page
+  ],
+)
+
+== Implemented database
+The implemented database schema found at `/note_app/napp/schema.sql` is mostly faithful to the design, the only two exceptions being `file` table was renamed to `upload` with 3 foreign keys added and `users` table was missing a password field in the design, so I had to add one later. In the end, I did not use the upload table to store location of files because that won't be changing any time soon. I wrote a script that should create a user upload folder if one doesn't exist when files get uploaded. Here is the implemented schema below:
+```sql
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS note;
+DROP TABLE IF EXISTS reminder;
+DROP TABLE IF EXISTS upload;
+
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT UNIQUE NOT NULL,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE note (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  title TEXT NOT NULL,
+  body TEXT NOT NULL,
+  FOREIGN KEY (author_id) REFERENCES user (id)
+);
+
+CREATE TABLE reminder (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  note_id INTEGER, -- allow null because maybe a reminder is not linked to a note.
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  due TIMESTAMP NOT NULL , -- cannot use datetime to set as default
+  title TEXT NOT NULL,
+  body TEXT NOT NULL,
+  complete INTEGER NOT NULL DEFAULT 0,
+  FOREIGN KEY (author_id) REFERENCES user (id),
+  FOREIGN KEY (note_id) REFERENCES note (id)
+);
+
+CREATE TABLE upload (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  note_id INTEGER, -- allow null because an upload might not be 
+  reminder_id INTEGER, -- allow null
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  upload_name TEXT NOT NULL,
+  uploaded_file BLOB NOT NULL,
+  FOREIGN KEY (author_id) REFERENCES user (id),
+  FOREIGN KEY (note_id) REFERENCES note (id),
+  FOREIGN KEY (reminder_id) REFERENCES reminder (id)
+);
+```
+== App endpoints
+Out of the 17 entries in th app endpoint table, I have implemented 13. I had renamed several endpoints and limited myself to the use of `get` and `post` methods for the sake of clarity in my code. For example, create, update and delete endpoints now end with the their corresponding actions like so `/notes/<id>/update`.
+
+#figure(
+  table(
+    columns: 5,
+    [HTTP Method], [Endpoint], [Description], [Request Body],[Response],
+    [`GET` ], [`/note/list`], [Fetch all notes for a user ], [blank], [List of Notes] ,
+    [ `GET`],[`/note/<id>`],[Fetch single note by ID],[blank],[Note object representation],
+    [`POST`], [`/note/create`], [ create new note], [Title, content], [redirect to new note],
+    [`POST`], [`/notes/<id>/update`], [update a note], [fields to update], [redirect to updated note],
+    [`POST`], [`/notes/<id>/delete`], [delete a note], [blank], [redirect to list of notes],
+    [`GET`], [`/upload/list`], [fetch all uploads for a user], [ blank], [list of user's uploads],
+    [`GET`], [`/upload/<id>`], [fetch an upload by ID], [blank], [single upload details],
+    [ `POST`], [`/upload/create`], [create upload record and save file], [file], [redirect to upload details.],
+    [`POST`], [`/uploads/<id>/delete`], [delete upload], [blank], [redirect to user's uploads],
+    [`GET`], [`/reminders/list`], [fetch all reminders for a user], [blank], [list of user's reminders],
+    [`GET`], [`/reminders/<id>`], [fetch a reminder by ID], [blank], [single reminder details],
+    [`POST`], [`/reminders/create`], [create reminder record and save file], [title, task, email_sent, review_date], [redirect to reminder details.],
+    [ `POST`], [`/reminders/<id>/delete`], [delete reminder], [blank], [redirect to user's reminders],
+
+  ),
+  caption: [Implemented App endpoints],
+)
+
+== Hosting
+I failed to host the web application properly on time. I have installed apache2 and configured it as a reverse proxy with tls, it would point to a local waitress process that runs my flask application. However, I did not set up a persistent waitress process, so my server returns a `503 Service Unavailable` response. 
 
 #pagebreak()
 = Testing
