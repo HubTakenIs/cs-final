@@ -103,9 +103,50 @@ A web app with CRUD functionality is nothing new and not complicated. I should b
   ],
 )
 
-
+== UI navigation diagrams
+#figure(
+  image("../system_design/UI_navigation.png"),
+  caption: [
+   UI navigation mockup
+  ],
+)
 
 == UI Mockups
+=== Landing Page
+#figure(
+  image("../system_design/landing_page_design.png"),
+  caption: [
+   landing page design
+  ],
+)
+=== Login / Register Page
+#figure(
+  image("../system_design/login_page_design.png"),
+  caption: [
+   login page design
+  ],
+)
+=== User Dashboard
+#figure(
+  image("../system_design/user_dashboard_design.png"),
+  caption: [
+   user dashboard design
+  ],
+)
+=== Single Item View
+#figure(
+  image("../system_design/single_item_view_design.png"),
+  caption: [
+   single item page design
+  ],
+)
+=== Item List View
+#figure(
+  image("../system_design/item_list_view_design.png"),
+  caption: [
+   item list page design
+  ],
+)
 
 == Database Design
 #figure(
