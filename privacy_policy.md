@@ -6,15 +6,17 @@ Controller
 Controller: Napp
 Email: (email)
 
+
 What data we collect
 Account information:
-●	Email Address
-●	Password
-●	User-name 
+-	Email Address
+-	Password
+-	User-name 
 
 Content data:
-●	User-generated notes
-●	Uploaded files
+-	User-generated notes
+-	Uploaded files
+
 
 We have a legal obligation to comply with the UK GDPR, this means any data collected will be stored and secured safely, in the event there is a data breach, you will be notified. There are also legitimate reasons to collect data such as for fraud prevention or the improvement of the service.
 
@@ -32,11 +34,11 @@ Your data will be stored for as long as legally necessary to comply with GDPR.
  
 Your Rights
 
-●	You have the right to request a copy of your personal data
-●	You have the right to correct inaccurate data
-●	You have the right to request your data to be deleted
-●	You have the right to request how we use your data as long as it is legal and reasonable
-●	You have the right to withdraw consent from the terms of service at any time.
+-	You have the right to request a copy of your personal data
+-	You have the right to correct inaccurate data
+-	You have the right to request your data to be deleted
+-	You have the right to request how we use your data as long as it is legal and reasonable
+-	You have the right to withdraw consent from the terms of service at any time.
 
 To use any of the following you must contact us by email.
 
