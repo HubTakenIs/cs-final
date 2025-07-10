@@ -56,7 +56,9 @@ def list():
     reminders = db.execute(
         'SELECT r.id, title, body, created, author_id, username, due'
         ' FROM reminder r JOIN user u ON r.author_id = u.id'
-        ' ORDER BY created DESC'
+        ' WHERE u.id = ?'
+        ' ORDER BY created DESC',
+        (str(g.user['id']))
     ).fetchall()
     return render_template('reminder/list.html',reminders=reminders)
 

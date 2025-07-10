@@ -42,7 +42,9 @@ def list():
     notes = db.execute(
         'SELECT n.id, title, body, created, author_id, username'
         ' FROM note n JOIN user u ON n.author_id = u.id'
-        ' ORDER BY created DESC'
+        ' WHERE u.id = ?'
+        ' ORDER BY created DESC',
+        (str(g.user['id']))
     ).fetchall()
     return render_template('note/list.html',notes=notes)
 
