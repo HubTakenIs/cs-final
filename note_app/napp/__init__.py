@@ -12,6 +12,8 @@ def create_app(test_config=None):
         ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'},
         UPLOAD_FOLDER = os.path.join(app.instance_path, 'uploads')
     )
+    app.logger.debug(f"App Root: {app.root_path}")
+    app.logger.debug(f"App Instance: {app.instance_path}")
 
     if test_config is None:
         # load the instance config, if it exists, when not testing

@@ -28,9 +28,12 @@ def create():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
                 # make upload folder.
+            current_app.logger.debug('I am trying to create directory')
             try:
                 os.makedirs(os.path.join(current_app.config['UPLOAD_FOLDER'],str(g.user["id"])))
+                current_app.logger.debug('apparently created dir')
             except OSError:
+                current_app.logger.debug('do I silently fail?')
                 pass
 
             file.save(os.path.join(current_app.config['UPLOAD_FOLDER'],str(g.user["id"]), filename))
@@ -44,13 +47,24 @@ def single(id):
 @bp.route('/list')
 @login_required
 def list():
-    items = os.listdir(os.path.join(current_app.config['UPLOAD_FOLDER'],str(g.user["id"])))
+    items = None
+    try:
+        items = os.listdir(os.path.join(current_app.config['UPLOAD_FOLDER'],str(g.user["id"])))
+    except OSError:
+        items = ""
+        current_app.logger.debug('failed to read directory.')
     return render_template('upload/list.html',items=items,user_id=str(g.user["id"]))
 
 @bp.route("/<int:id>/<name>")
 @login_required
 def download_file(name,id):
-    user_folder = os.path.join(current_app.config['UPLOAD_FOLDER'],str(g.user["id"]))
+    user_folder = None
+    try:
+        user_folder = os.path.join(current_app.config['UPLOAD_FOLDER'],str(g.user["id"]))
+    except OSError:
+        flash("user foulder not found")
+        return redirect(url_for('upload.view'))
+    # error handling above doesn't work. instead I get 404
     return send_from_directory(user_folder, name)
 
 @bp.route('/<int:id>/<name>/delete')

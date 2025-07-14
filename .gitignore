@@ -2,6 +2,7 @@ report_src/report.pdf
 note_app/.venv
 note_app/dist
 note_app/instance
+note_app/__pycache__
 note_app/napp/__pycache__
 .mypy_cache
 prof_report/prof_report.pdf
