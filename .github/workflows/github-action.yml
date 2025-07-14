@@ -19,8 +19,18 @@ jobs:
         source .venv/bin/activate
         pip install --upgrade pip setuptools wheel
 
-    - name: Build and install app
+    - name: Build 
       run: |
+        cd note_app
+        source .venv/bin/activate
+        python3 -m build
+
+    - name: Install 
+      run: |
+        cd note_app
+        cp dist/napp*.whl /home/hubertas/hosted_app/
+        cd /home/hubertas/hosted_app/
+        python3 -m venv .venv
         source .venv/bin/activate
         pip install .
 
