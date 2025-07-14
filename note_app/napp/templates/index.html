@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block content %}
 <div class="content">
     <header>
       <h1>Welcome to Napp</h1>
@@ -16,5 +17,5 @@
     <h2>Get Started</h2>
     <p><a href="{{ url_for('auth.register') }}">Create an account</a> or <a href="{{ url_for('auth.login') }}">log in</a> to begin your learning journey.</p>
   </div>
-
+{% endblock %}
 
