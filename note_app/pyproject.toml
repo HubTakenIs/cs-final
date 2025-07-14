@@ -4,7 +4,6 @@ version = "0.0.1"
 dependencies = [
   "flask",
   "waitress",
-  "sqlite3",
 ]
 authors = [
   { name="Hubertas Varanauskas", email="hubertaslol@gmail.com" },
