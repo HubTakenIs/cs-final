@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Blueprint,flash,render_template,request,redirect,g,url_for,abort
+from flask import Blueprint,flash,render_template,request,redirect,g,url_for,abort, current_app
 from napp.db import get_db 
 from napp.auth import login_required
 
@@ -13,8 +13,9 @@ def create():
         title = request.form['title']
         body = request.form['body']
         due = request.form['due']
+        time = request.form['time']
         error = None
-
+        current_app.logger.debug(f"{title},{body},{due},{time}")
         # doesn't seem to work
         if due:
             try:
@@ -36,9 +37,9 @@ def create():
         else:
             db = get_db()
             db.execute(
-                'INSERT INTO reminder (title, body, author_id,due)'
-                ' VALUES (?, ?, ?,?)',
-                (title, body, g.user['id'], due)
+                'INSERT INTO reminder (title, body, author_id,due,time)'
+                ' VALUES (?, ?, ?,?,?)',
+                (title, body, g.user['id'], due,time)
             )
             db.commit()
             return redirect(url_for('reminder.list'))
@@ -54,7 +55,7 @@ def view(id):
 def list():
     db = get_db()
     reminders = db.execute(
-        'SELECT r.id, title, body, created, author_id, username, due'
+        'SELECT r.id, title, body, created, author_id, username,  date(due) as due,time'
         ' FROM reminder r JOIN user u ON r.author_id = u.id'
         ' WHERE u.id = ?'
         ' ORDER BY created DESC',
@@ -82,6 +83,7 @@ def update(id):
                 due = datetime.strptime(due, "%Y-%m-%d")
             except ValueError:
                 error = "Invalid date format. Use YYYY-MM-DD."
+                # i didn't flash error. 
                 return redirect(url_for("reminder.create"))
         else:
             due = None  # Or a default if needed

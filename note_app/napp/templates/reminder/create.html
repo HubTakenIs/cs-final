@@ -13,6 +13,9 @@
     
     <label for="review_date">Review Date</label>
     <input type="date" name="due" id="due" value="{{ request.form['due'] }}">
+
+    <label for="review_time">Review Time</label>
+    <input type="time" name="time" id="time" value="{{ request.form['time'] }}">
     
     <input type="submit" value="Save">
     

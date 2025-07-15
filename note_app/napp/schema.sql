@@ -24,7 +24,8 @@ CREATE TABLE reminder (
   author_id INTEGER NOT NULL,
   note_id INTEGER, -- allow null because maybe a reminder is not linked to a note.
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  due TIMESTAMP NOT NULL , -- cannot use datetime to set as default
+  due TEXT NOT NULL , -- cannot use datetime to set as default
+  time TEXT,
   title TEXT NOT NULL,
   body TEXT NOT NULL,
   complete INTEGER NOT NULL DEFAULT 0,

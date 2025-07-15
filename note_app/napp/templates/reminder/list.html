@@ -13,8 +13,9 @@
       <header>
         <div>
           <h1>{{ reminder['title'] }}</h1>
-          <div class="about">by {{ reminder['username'] }} on {{ reminder['created'].strftime('%Y-%m-%d') }} <br>
-          Review Date: {{ reminder['due'].strftime('%Y-%m-%d') if reminder['due'] else 'Not set' }}
+          <div class="about">by {{ reminder['username'] }} on {{ reminder['created'] }} <br>
+          Review Date: {{ reminder['due'] if reminder['due'] else 'Not set' }} <br>
+          Time : {{ reminder['time'] if reminder['time'] else 'Not set' }}
           </div>
           
         </div>

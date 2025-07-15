@@ -13,6 +13,9 @@
     <textarea name="body" id="body">{{ request.form['body'] or reminder['body'] }}</textarea>
     <label for="review_date">Review Date | Current Date: {{request.form['due'] or reminder['due']}}</label>
     <input type="date" name="due" id="due" value="{{ request.form['due'] or reminder['due'] }}">
+    <label for="review_time">Review Time</label>
+    <input type="time" name="time" id="time" value="{{ request.form['time'] }}">
+    
     <input type="submit" value="Save">
   </form>
   <hr>
