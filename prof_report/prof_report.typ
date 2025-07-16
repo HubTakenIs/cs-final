@@ -44,11 +44,31 @@ Lastly, the terms of service cover most legal aspects to be considered. My terms
 
 
 = Security considerations
-I have not implemented sufficient security meassures for the web application to be secure and therefore I will not be hosting it to the public internet. The only security measure my product has is tls encryption. Without data validation, proper authentication and input sanitation, I don't think the application is secure.
+Since my application is a prototype, very few security measures have been implemented but I have made a few considerations that could be implemented to improve security.
+== Securing the box
+To secure my linux vps, I have set up passwordless ssh authentication for a non-root user. I have disabled root user login with password. I set up the waitress process to run under a non-root user. This follows best practice for securing a remote linux box and running a web server.
+== Using https and reverse proxy
+To use https, I have set up an Apache2 instance as a reverse proxy to the Waitress process running my flask app. Flask and Waitress does not natively handle HTTPS well, so using Apache2 was the simplest and quickest solution to support TLS encryption. 
+
+Apache2 can also be used later to set up static file handling, centralised logging and control of timeouts, caching, headers and compression.
+
+== file uploads
+For file upload security I have implemented allowed file type check. I only allow registered and logged in users to upload files to the app and users can only access their own uploaded files. The files are stored outside Apache's public web directory and the file names are filtered to escape any malicious file names by Werkzeug's `secure_filename` function. 
+
+In the future I should limit file sizes.
+== User authentication
+
+Any users are allowed to register to the application. They are authenticated by the app using their credentials. Passwords are stored as hashes in the database. signed session tokens are used to validate user requests. Most application endpoints require users to be logged in to view content and interact with the application. 
+
+For the future, I should implement email verification and 2 factor authentication to improve security.
+
+== Input validation and sanitation
+
+As the app is a prototype, input validation and sanitation is very limited. For the future, I would need to validate email addresses during registration. I would need to sanitise note title and body fields. Anything that gets inserted into the database would have to be sanitised. The only sanitisation I have implemented is using Werkzeug's `secure_filename` to generate secure file names.
 
 = Licensing
-I chose the MIT license because I do not want to waste time thinking how my app is used. anyone can use it how ever they like.
+I chose the MIT license for a few reasons. The license is short and written in plain english, so it's easy to understand what users can use the code for. The license contains a liability disclaimer which in theory should keep me protected from legal responsibility and the license makes it easy for interviewers to try out my code without licensing issues. The ultimate freedom for users that MIT license provides encourages broader adoption and modification. If students wanted to self host my application or modify it to suit their particular needs, they can do so without fear of any legal repercussions.
 
-
+#pagebreak()
 
 #bibliography("works.bib",style: "harvard-cite-them-right")
