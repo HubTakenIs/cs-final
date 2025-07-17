@@ -1,4 +1,5 @@
 #set heading(numbering: "1.")
+#show link: underline
 
 #outline()
 #pagebreak()
@@ -378,12 +379,35 @@ For example, create, update and delete endpoints now end with the their correspo
   ),
   caption: [Implemented App endpoints],
 )
-
+#pagebreak()
 == Hosting
-I failed to host the web application properly on time. I have installed apache2 and configured it as a reverse 
-proxy with tls, it would point to a local waitress process that runs my flask application. However, 
-I did not set up a persistent waitress process, so my server returns a `503 Service Unavailable` response. 
-The web app is accessible only when I run the process as a user on the remote system over ssh.
+I have managed to host the application publicly using my linux vps and my already registered domain `hubv.co.uk`. The hosted application can be accessed through the following link
+#link("https://hubv.co.uk")
+
+
+The application is deployed on a self-managed Ubuntu Linux VPS hosted by Ionos. I have chose a VPS for several reasons, it's cost effective as I only spend £4.20 a month for the VPS. I have full control of the operating system because the entire operating system is open source. Ubuntu is well documented and has a great ecosystem of packages available for me to use. Last reason for choosing Ubuntu is educational, It's a great learning environment and it will closely resemble real world hosting solutions found on the job.
+
+=== Technologies used
+Technologies I have used to deploy my application are:
+- Waitress: It's a Python WSGI server, I have used to serve the Flask app.
+- Systemd: I used systemd to manage Waitress as a background server on the VPS.
+- Apache2: I have used it as a reverse proxy to handle https and route traffic to Waitress
+- Github Actions: I have used a simple workflow to automate code deployment 
+
+=== Web server and Reverse proxy
+The Flask application is server using Waitress, which is a production grade Python WSGI server. Waitress does not support HTTPS so I have used the Apache HTTP server configured as a reverse proxy, listening on port 443 for HTTPS traffic and forwarding requests to Waitress running on localhost at port 8080. Apache is also resposible for TLS/SSL termination using SSL certificate provided by Ionos. 
+
+=== Deployment automation with Github Actions
+
+Deployment is automated using GitHub Actions via a self-hosted runner installed on my VPS. It is currently configured to act when changes are pushed to the main branch of my GitHub repository. Once changes are detected, the runner pulls latest code onto a temporary directory, installs packages into a virtual environment, builds the package, copies package into an already set up environment folder and reinstalls the package there. Then it restarts the Waitress process using systemd. if none of the jobs fail, then the app is redeployed. 
+
+This continuous deployment pipeline ensures the application is always running the latest version without requiring manual intervention. It also provides traceability as deployment data is logged in GitHub Actions for up to 90 days.
+
+=== Systemd service
+A systemd service was set up to automatically restart on crash or failure and allow the Waitress process to start up on system start up. It offers easy controls to start, stop and check the status of Waitress process which can be used by other applications like the GitHub Action runner. 
+
+=== Database 
+The app uses Sqlite3 as its database engine. It's a whole database stored as a single file within the app's instance directory. I mostly chose this because it's very simple to use and setup.
 
 #pagebreak()
 = Testing
@@ -399,7 +423,7 @@ people to understand the functionality of the program. BDD is often used in larg
 technical knowledge allowing everyone to understand what code does or should do. One issue with BDD is the time it takes to set up, not only does it require gherkin 
 specifications but it also requires code to be written to use the gherkin specifications to test code and the quality of gherkin specifications can determine how easily this is done.
 
-=== Testing napp
+== Testing napp
 For my project I have chosen to perform manual testing. There are several key reasons for this, 
 one major reason being that I did not plan carefully enough to allow myself to implement all of  the features I wanted to implement, 
 and I have spent a lot of time trying to implement certain features like file uploading or the automatic email system which meant I had less time to 
@@ -676,7 +700,7 @@ from the conception to the research made as well as the design and implementatio
 == Conception and Literature Review:
 
 Based on some research I decided to create a note-taking application which aims to notify users periodically to review their notes to encourage spaced repetition,
- I believe this idea is something that is not currently available and could therefore fill in a need for a product like that.
+I believe this idea is something that is not currently available and could therefore fill in a need for a product like that.
 Once I had decided to do a note-taking application I started the literature review where I researched and reviewed existing articles, reports, and studies about 
 note-taking as well as existing applications that perform similar functions.
 I believe I performed my research quite well and formed a strong basis off of which I could plan and design my application to try to create a solution for my proposed problem.
@@ -736,7 +760,19 @@ If I was to do another project like this I could create a basic plan of what nee
 until I have a list of things to complete that are small enough for me to maintain my motivation and not be overwhelmed.
 
 == Overview of the project as a whole and it's success:
- 
+
+In terms of project management, I have not submitted anything for any of the project milestones on Canvas. I have barely talked with my supervisor through out the year and the 3-5 times that I did talk with him remain undocumented. I only worked on the project between 24th of June and 17th of July, Which is 23 days and out of the 23 days, I have not made commits to my Github repository for 8 days. So I have made 82 commits over 15 days spreadout over 23 days. My inital plan that I created on 26th of June was already falling apart the very start as I failed to keep up with the pace I set for myself. The first instance of my plan falling apart was being 4 days late to finish my literature review. Through out the whole project I was multiple days behind my planned schedule. Honestly, the plan was unrealistic because I failed to do any work through out the year, why would the last few weeks suddenly make me a workaholic? I have made an attempt to manage my time and project as a whole but it's too little too late. 
+
+The planning phase was too short. I have failed to produce professional grade designs for my application's UI and I have failed to express how the whole system works in detail through diagrams. For example, how each page is linked to other pages via hyperlinks and what buttons go where. The planning phase diagrams I have produced are more like the beginning of the design process, they look like brainstormed ideas. The User interface diagrams are unrefined and lack critical detail for my app to function. The failure to refine UI design caused me a few problems in development as I basically improvised a very basic UI as I was writting the application. Another failure of the planning phase was coming up with a clear and consise research question with aims and objectives for the project. I have also started designing the application before I have finished the literature review so my design didn't reflect any of the understanding of the topics covered in my literature review. I failed to develop a testing plan and a testing methodology during my planning phase which led me to manually testing my application. I have also failed to plan the experiment I would be conducting to attempt to answer my academic question, which is supposed to be the whole point of the project. I failed to create a system of gather user feedback for my experiment. 
+
+The implementation went mostly smooth. I rant into a few technical challenges because I used relative pathing for database and user upload folder paths. The technical issue caused me to fail to deploy the app for the original deadline of 10th of July. I managed to fix the issues by simply installing my package in a fresh virtual environment. My code in `note_app/napp` was conflicting with `note_app/.venv/` package. This caused my click function that initialised my database to fail. Other issues with implementation were lack of skill in working with time and date with sql, hosting the application safely and redploying the application. Manually redeploying the application on my server was very cumbersome so I decided to set up a simple ci/cd pipeline using Github Actions. I also didn't know how to send emails using python and didn't have enough time to learn it.
+
+The testing phase was ok, I took screenshots of what I had deployed on 10th of july and added them to this document. They are now outdated just like parts of this document. 
+
+This report is very inconsitent, just like myself. The layout doesn't seem to follow a logical order, I have large blocks of dull text that could be broken down. My literature review doesn't evaluate literature relevancy for my academic question. During my literature review I have failed to produce a synthesis table for evidence, it would have greatly improved my management of information. Ideas and thoughts aren't expressed clearly as I have just addded diagrams with no writing in some parts of the report. I have not run the report past any grammar or spellcheck which will definitely impact the quality of my report and presentation. My writing style is very informal and unacademic.
+
+My evaluation of the project doesn't address the aims and objectives of the project or evaluation of artefact and processes used to develop it. In the last few paragraphs I have been only negative towards my work, if it can even be called that. 
+
 My overall poor time management skills and lack of knowledge and preparation led me to grossly underestimate how long or 
 how difficult certain features would take to implement in my project, which in turn led me to rush the development, 
 only giving me time to implement basic CRUD operations and deploying the web application on my linux server. 
